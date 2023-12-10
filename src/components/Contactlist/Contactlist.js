@@ -2,25 +2,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ContactlistButton, ContactlistList } from './Contactlist.styles';
 import { deleteContact } from 'reduxfolder/http';
 // import { deleteContact } from '../../reduxfild/contactsSlice';
-// import { visibleArreyFilter } from 'reduxfolder/selectors';
+import { visibleArreyFilter } from 'reduxfolder/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.filters.filter);
+  const visibleArrey = useSelector(visibleArreyFilter);
+  // const contacts = useSelector(state => state.contacts.items);
+  // const filter = useSelector(state => state.filters.filter);
 
-  const visibleArreyFilter = () => {
-    return contacts.filter(item => {
-      const visibleArrey = item.name
-        .toLowerCase()
-        .includes(filter.toLowerCase());
-      return visibleArrey;
-    });
-  };
+  // const visibleArreyFilter = () => {
+  //   return contacts.filter(item => {
+  //     const visibleArrey = item.name
+  //       .toLowerCase()
+  //       .includes(filter.toLowerCase());
+  //     return visibleArrey;
+  //   });
+  // };
 
   return (
     <ul>
-      {visibleArreyFilter().map(item => {
+      {visibleArrey.map(item => {
         return (
           <ContactlistList key={item.id}>
             <p>{item.name} :</p>
